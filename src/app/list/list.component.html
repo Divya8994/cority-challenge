@@ -1,0 +1,38 @@
+<div class=container>
+    <ul>
+  <div class=header>
+      <img class="drop-down" src="https://img.icons8.com/material/24/000000/sort-down.png">
+      <img class="add" src="https://img.icons8.com/material/24/000000/plus-math.png">
+      
+  <p><span id=listname>List Name</span>&nbsp;&nbsp;<span id=circle>1</span><br>
+     <span id=total> Total 3</span>
+  </p>
+  <p></p>
+</div>
+<!-- <li *ngFor="let name of name">{{ name }}</li> -->
+<li *ngFor="let list of lists">
+  
+    <div class="w-20"> 
+        
+      <img class=img1 src= "{{ list.imgURL }} " alt="list-image">
+    </div>
+    <div class="w-80">
+        <span><img id=circle1 src="{{ list.dotImg }}"></span>
+      <h3 class="heading">{{ list.heading }}</h3>
+      <h4 class="description1">{{ list.description1 }}</h4>
+      <p>{{ list.description2 }}</p>
+     
+      <span><img id=cal src="{{ list.calendarIcon }}"></span>
+      <span>{{ list.todayDate | date : 'fullDate'}}</span>
+      
+    </div>
+  </li>
+      </ul>
+      <div>
+        <footer>
+            <button class="footer-button"  (click)="loadMore()"> {{ buttonString }}</button>
+        </footer>
+
+      </div>
+
+</div>
