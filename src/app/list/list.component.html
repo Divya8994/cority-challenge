@@ -1,38 +1,46 @@
-<div class=container>
+<div class="container">
     <ul>
-  <div class=header>
-      <img class="drop-down" src="https://img.icons8.com/material/24/000000/sort-down.png">
-      <img class="add" src="https://img.icons8.com/material/24/000000/plus-math.png">
-      
-  <p><span id=listname>List Name</span>&nbsp;&nbsp;<span id=circle>1</span><br>
-     <span id=total> Total 3</span>
-  </p>
-  <p></p>
-</div>
-<!-- <li *ngFor="let name of name">{{ name }}</li> -->
-<li *ngFor="let list of lists">
-  
-    <div class="w-20"> 
-        
-      <img class=img1 src= "{{ list.imgURL }} " alt="list-image">
-    </div>
-    <div class="w-80">
-        <span><img id=circle1 src="{{ list.dotImg }}"></span>
-      <h3 class="heading">{{ list.heading }}</h3>
-      <h4 class="description1">{{ list.description1 }}</h4>
-      <p>{{ list.description2 }}</p>
-     
-      <span><img id=cal src="{{ list.calendarIcon }}"></span>
-      <span>{{ list.todayDate | date : 'fullDate'}}</span>
-      
-    </div>
-  </li>
-      </ul>
-      <div>
-        <footer>
-            <button class="footer-button"  (click)="loadMore()"> {{ buttonString }}</button>
-        </footer>
-
+      <div class="header">
+        <img class="add" (click)="addListItem()" src="https://img.icons8.com/material/24/000000/plus-math.png">
+        <img class="drop-down" (click) = "collapse()" src="https://img.icons8.com/material/24/000000/sort-down.png">
+        <p><span id="listname" >List Name</span>&nbsp;
+          &nbsp;<span id="circle">{{ badge }}</span>
+          <br>
+          <span class="total"> Total {{total}}</span>
+        </p>
       </div>
-
-</div>
+     <!-- <li *ngFor="let name of names">{{ name }}</li> -->
+  
+      <li *ngFor="let list of lists; index as i" [ngClass]="{'wrap' : true ,'left-border' : this.border && i==0 }"   >
+        <div class="w-20">
+          <img class="main-img" [src]="list.imgURL ? list.imgURL : 'https://images.unsplash.com/photo-1502210109953-6c28c3416826?ixlib=rb-1.2.1&auto=format&fit=crop&w=1534&q=80' " alt="list-image">
+        </div>
+        <div class="w-80">
+          <div class="first-part">
+          <h3 class="heading">{{ list.heading }}</h3>
+          <h4 class="description1">{{ list.desc1 }}</h4>
+          <p>{{ list.desc2 }}</p>
+          <span>
+          <img class="cal-icon" src="https://img.icons8.com/ios/26/000000/calendar-filled.png">
+          <span class="date">{{ list.todayDate | date : 'EE LLL dd yyyy'}}
+          </span>
+          </span>
+          </div>
+          <div class="second-part">
+            <img class="ellipse" (click)="hide[i] = !hide[i]" src="https://img.icons8.com/small/16/000000/menu-2.png">
+            <div class="extra-buttons" [hidden]="!hide[i]">
+              <img class="download" src="https://img.icons8.com/metro/26/000000/download-2.png">
+              <img class="delete" (click)="deleteEntry(i)" src="https://img.icons8.com/material-rounded/26/000000/trash.png">
+            </div>
+            </div>
+        </div>
+      </li>
+      <div class='footer'>
+      <button class="footer-button"  (click)="addListItem()"> {{ buttonString }}</button>
+       </div>
+  
+    </ul>
+  
+  </div>
+  
+  

@@ -1,9 +1,8 @@
 export class List{
-    dotImg:string;
     imgURL: string;
     heading: string;
-    description1: string;
-    description2: string;
-    calendarIcon:string;
-    todayDate:number;
+    desc1: string;
+    desc2: string;
+    todayDate: any;
+    
 }
